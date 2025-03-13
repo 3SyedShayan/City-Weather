@@ -40,6 +40,7 @@ web
 windows
 .vscode/
 README.md
+test
 
 # Symbolication related
 app.*.symbols
