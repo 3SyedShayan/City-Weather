@@ -31,17 +31,8 @@ class WeatherService {
 
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
-// return placemark[0].locality.toString();
     String? city = placemark[0].locality;
     return city ?? "";
   }
 
-// Future<Weather> getWeatherByLocation(double lat, double lon) async {
-//     final response = await http.get(Uri.parse('$BASE_URL?lat=$lat&lon=$lon&appid=$apiKey&units=metric'));
-//     if (response.statusCode == 200) {
-//       return Weather.fromJson(json.decode(response.body));
-//     } else {
-//       throw Exception('Failed to load weather data');
-//     }
-  // }
 }

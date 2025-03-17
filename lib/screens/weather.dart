@@ -25,7 +25,6 @@ class _WeatherState extends State<Weather> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchWeather();
   }
