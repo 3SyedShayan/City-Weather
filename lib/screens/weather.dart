@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_city_weather/models/weather_model.dart';
 import 'package:my_city_weather/services/weather_service.dart';
 
@@ -15,11 +16,11 @@ class _WeatherState extends State<WeatherPage> {
     String cityName = await _weatherService.getCurrentCity();
 
     try {
-      final weather2 = await _weatherService.getWeather(cityName);
-      print(weather2.runtimeType);
+      final weather = await _weatherService.getWeather(cityName);
+      print(weather.runtimeType);
 
       setState(() {
-        _weather = weather2;
+        _weather = weather;
       });
       print(_weather.runtimeType);
     } catch (e) {
@@ -37,7 +38,13 @@ class _WeatherState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("City Name : ${_weather?.cityName}"),
+        child: Column(
+          children: [
+            Text(_weather?.cityName ?? 'Loading...'),
+            Text('${_weather?.temperature.round()} Celsius'),
+            Text(_weather?.mainCondition ?? 'Loading...'),
+          ],
+        ),
       ),
     );
   }
