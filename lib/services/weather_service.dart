@@ -24,15 +24,14 @@ class WeatherService {
   Future<String> getCurrentCity() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      await Geolocator.requestPermission();
+      permission = await Geolocator.requestPermission();
     }
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    List<Placemark> placemark =
+    List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
-    String? city = placemark[0].locality;
+    String? city = placemarks[0].locality;
     return city ?? "";
   }
-
 }
