@@ -41,6 +41,8 @@ class _WeatherState extends State<WeatherPage> {
         child: Column(
           children: [
             Text(_weather?.cityName ?? 'Loading...'),
+            Text('${_weather?.temperature.round()} Celsius'),
+            // Text(_weather?.mainCondition ?? 'Loading...'),
           ],
         ),
       ),
