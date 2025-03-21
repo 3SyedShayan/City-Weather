@@ -40,12 +40,9 @@ class _WeatherState extends State<WeatherPage> {
 
     try {
       final weather = await _weatherService.getWeather(cityName);
-      print(weather.runtimeType);
-
       setState(() {
         _weather = weather;
       });
-      print(_weather.runtimeType);
     } catch (e) {
       print(e);
     }
@@ -60,15 +57,25 @@ class _WeatherState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(_weather?.cityName ?? 'Loading...'),
+            Text(
+              _weather?.cityName ?? 'Loading...',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
             Lottie.asset(
               getWeatherAnimation(_weather?.mainCondition),
             ),
-            Text('${_weather?.temperature.round()} Celsius'),
-            // Text(_weather?.mainCondition ?? 'Loading...'),
+            Text(
+              '${_weather?.temperature.round()} °Celsius',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
           ],
         ),
       ),
