@@ -10,6 +10,29 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherState extends State<WeatherPage> {
+  String getWeatherAnimation(String? mainCondition) {
+    if (mainCondition == null) return 'assets/sunny.json';
+    switch (mainCondition.toLowerCase()) {
+      case 'clouds':
+      case 'mist':
+      case 'smoke':
+      case 'haze':
+      case 'dust':
+      case 'fog':
+        return 'assets/cloudy.json';
+      case 'rain':
+      case 'drizzle':
+      case 'shower rain':
+        return 'assets/rainy.json';
+      case 'thunderstorm':
+        return 'assets/thunderstorm.json';
+      case 'clear':
+        return 'assets/sunny.json';
+      default:
+        return 'assets/sunny.json';
+    }
+  }
+
   final _weatherService = WeatherService('f9e48efdea84d4319049d3f036def82d');
   Weather? _weather;
   _fetchWeather() async {
@@ -41,6 +64,9 @@ class _WeatherState extends State<WeatherPage> {
         child: Column(
           children: [
             Text(_weather?.cityName ?? 'Loading...'),
+            Lottie.asset(
+              getWeatherAnimation(_weather?.mainCondition),
+            ),
             Text('${_weather?.temperature.round()} Celsius'),
             // Text(_weather?.mainCondition ?? 'Loading...'),
           ],
