@@ -66,7 +66,7 @@ class _WeatherState extends State<WeatherPage> {
               _weather?.cityName ?? 'Loading...',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 21,
               ),
             ),
             Lottie.asset(
